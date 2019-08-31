@@ -1,0 +1,65 @@
+#####################################
+#     Associa??o entre vari?veis    #
+#####################################
+
+### Vari?veis Qualitativas #####
+
+#Como ler dados do Excel (o arquivo ser gravado em .csv)
+      
+dados <-read.csv("banco_dados.csv",dec=",",sep=";",header =T)
+dados
+
+attach(dados)
+head(dados)
+
+#Tabela de frequ?ncia cruzada
+
+tabela1<-table(nascimento,sexo)
+tabela1
+
+tabela<-round(prop.table(tabela1)*100,2)
+tabela
+
+# Coloca nomes as linhas e colunas da tabela
+nomes.linha<-c("Capital","Interior do estado","Outro estado", "Outro pais")
+nomes.coluna<-c("Masculino","Feminino")
+dimnames(tabela)<-list(nomes.linha,nomes.coluna)
+tabela
+
+## Cria tabela com propor??es a partir da tabela de contagens 
+#(linha margin=1, coluna margin=2 o default ? sobre o total)
+
+
+tabela<-round(prop.table(tabela1,margin=2)*100,2)
+tabela
+
+# Coloca nomes as linhas e colunas da tabela
+nomes.linha<-c("Capital","Interior do estado","Outro estado", "Outro pais")
+nomes.coluna<-c("Masculino","Feminino")
+dimnames(tabela)<-list(nomes.linha,nomes.coluna)
+tabela
+
+tabela<-round(prop.table(tabela1,margin=1)*100,2)
+tabela
+
+# Coloca nomes as linhas e colunas da tabela
+nomes.linha<-c("Capital","Interior","Outro Estado", "Outro Pais")
+nomes.coluna<-c("Masculino","Feminino")
+dimnames(tabela)<-list(nomes.linha,nomes.coluna)
+tabela
+
+barplot(t(tabela),
+        ylab="Frequ?ncia Relativa de Sexo(%)",
+        xlab="Local de Nascimento", 
+        names.arg=nomes.linha, 
+        cex.lab=0.8,
+        cex.axis=0.8,
+        cex.names=0.6,
+        col=c("green","blue"),
+        las=1,
+        legend.text=T,
+        ylim=c(0,150)
+      
+	  )
+
+

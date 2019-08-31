@@ -41,7 +41,7 @@ t4
 
 leg= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Producao", 
 	 "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica", "Geologia", "Lic. Matematica", 
-	 "Matematica", "Quimica", "SI") 
+	 "Matematica", "Quimica", "S") 
 leg
 cores= rainbow(length(leg))
 barraCurso<- barplot(t3, names.arg= leg, ylab= "Número de Alunos", las=2,
@@ -62,3 +62,97 @@ text(h$mids, h$counts, labels=h$counts, adj=c(0.5, -0.5));
 
 is.numeric(idade)
 summary(idade)
+
+#####################################
+#RELACIONANDO VARIÁVEIS QUALITATIVAS#
+#####################################
+
+t7<- table(curso, religiao)
+t7
+
+tCursoReli<- round(prop.table(t7)*100, 2)
+tCursoReli
+
+#
+#Coloca nome nas linhas e colunas
+#
+nomes.coluna<- c("Catolica", "Evangelica", "Agnostico", "Ateu", "Judeu") 
+#N temos espiritas
+nomes.linha<- c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", 
+		    "Eng. Producao", "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica",
+		    "Geologia", "Lic. Matematica", "Matematica", "Quimica", "Sist. Informacao")
+dimnames(tCursoReli)<- list(nomes.linha, nomes.coluna)
+tCursoReli
+
+#
+#Cria uma tabela relacionada
+#
+tCursoReli<- round(prop.table(t7, margin=1)*100,2)
+tCursoReli
+
+#
+#Coloca nome nas linhas e colunas
+#
+nomes.coluna<- c("Catolica", "Evangelica", "Agnostico", "Ateu", "Judeu") 
+#N temos espiritas
+nomes.linha<- c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", 
+		    "Eng. Producao", "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica",
+		    "Geologia", "Lic. Matematica", "Matematica", "Quimica", "Sist. Informacao")
+dimnames(tCursoReli)<- list(nomes.linha, nomes.coluna)
+tCursoReli
+
+#Cria um gráfico de barras relacionando a religião com cada curso
+barplot(t(tCursoReli),
+        ylab="Frequência Relativa de Religião(%)",
+        names.arg=nomes.linha, 
+        cex.lab=0.8,
+        cex.axis=0.8,
+        cex.names=0.6,
+        col= rainbow(length(nomes.coluna)),
+        legend.text=T,
+        ylim=c(0,150),
+	  las= 2
+	  )
+
+
+
+#################
+#PRECISO ARRUMAR#
+#################
+#
+#Cria uma tabela relacionada 2
+#
+tCursoReli<- round(prop.table(t7, margin=1)*100,2)
+tCursoReli
+
+#
+#Coloca nome nas linhas e colunas
+#
+nomes.coluna<- c("Catolica", "Evangelica", "Agnostico", "Ateu", "Judeu") 
+#N temos espiritas
+nomes.linha<- c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", 
+		    "Eng. Producao", "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica",
+		    "Geologia", "Lic. Matematica", "Matematica", "Quimica", "Sist. Informacao")
+dimnames(tCursoReli)<- list(nomes.linha, nomes.coluna)
+tCursoReli
+
+
+#Cria um gráfico de barras relacionando a religião com cada curso
+barplot(t(tCursoReli),
+        ylab="Frequência Relativa de Religião(%)",
+        names.arg=nomes.coluna, 
+        cex.lab=0.8,
+        cex.axis=0.8,
+        cex.names=0.6,
+        col= rainbow(length(nomes.linha)),
+        legend.text=T,
+        ylim=c(0,150),
+	  las= 2      
+	  )
+
+#################
+#PRECISO ARRUMAR#
+#################
+
+
+
