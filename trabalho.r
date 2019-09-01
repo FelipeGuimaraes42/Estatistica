@@ -1,6 +1,6 @@
 dados<- read.csv("code.csv", sep=";", dec=",", header=T)
 
-print(summary(dados))
+#print(summary(dados))
 
 #dados
 
@@ -20,34 +20,34 @@ t1
 t2<- round(prop.table(t1)*100, 2)
 t2
 
-leg= c("Masculino", "Feminino");
+legSex= c("Masculino", "Feminino");
 cores= rainbow(length(leg));
 pie(t1, labels= t2, col= cores);
-legend("topright", leg, cex= 0.8, fill= cores);
+legend("topright", legSex, cex= 0.8, fill= cores);
 
 t3<-table(curso)
 t3
 t4<- round(prop.table(t3)*100, 2)
 t4
 #	NÃO É O MELHOR CASO USAR GRAFICOS DE PIZZA
-#leg= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Producao", 
-#	 "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica", "Geologia", "Lic. Matematica", 
-#	 "Matematica", "Quimica", "SI") 
-#leg
+#legCurso= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Produção", 
+#	 "Eng. Sistemas", "Eng. Mecânica", "Eng. Metalúrgica", "Geologia", "Lic. Matemática", 
+#	 "Matemática", "Química", "Sist. Informação") 
+#legCurso
 #cores= rainbow(length(leg))
 #pie(t3, labels=t4, col=cores)
-#legend("bottomleft", leg, cex=0.8, fill=cores)
+#legend("bottomleft", legCurso, cex=0.8, fill=cores)
 
 
-leg= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Producao", 
-	 "Eng. Sistemas", "Eng. Mecanica", "Eng. Metalurgica", "Geologia", "Lic. Matematica", 
-	 "Matematica", "Quimica", "S") 
-leg
+legCurso= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Produção",
+	 "Eng. Sistemas", "Eng. Mecânica", "Eng. Metalúrgica", "Geologia", "Lic. Matemática", 
+	 "Matemática", "Química", "Sist. Informação") 
+legCurso
 cores= rainbow(length(leg))
-barraCurso<- barplot(t3, names.arg= leg, ylab= "Número de Alunos", las=2,
+barraCurso<- barplot(t3, names.arg= legCurso, ylab= "Número de Alunos", las=2,
 		 ylim=c(0,30), xlim=c(0, 15), cex.names=0.6, col= cores, xaxs= "i")
 grid(nx= NA, ny= NULL)
-barraCurso<- barplot(t3, names.arg= leg, ylab= "Número de Alunos", las=2,
+barraCurso<- barplot(t3, names.arg= legCurso, ylab= "Número de Alunos", las=2,
 		 ylim=c(0,30), xlim=c(0, 15), cex.names=0.6, col= cores, xaxs= "i", add=TRUE)
 #legend("topleft", leg, cex=0.8, fill= cores)
 
@@ -122,7 +122,7 @@ barplot(t(tCursoReli),
 #
 #Cria uma tabela relacionada 2
 #
-tCursoReli<- round(prop.table(t7, margin=1)*100,2)
+tCursoReli<- round(prop.table(t7, margin=2)*100,2)
 tCursoReli
 
 #
@@ -140,19 +140,41 @@ tCursoReli
 #Cria um gráfico de barras relacionando a religião com cada curso
 barplot(t(tCursoReli),
         ylab="Frequência Relativa de Religião(%)",
-        names.arg=nomes.coluna, 
+        names.arg=nomes.linha, 
         cex.lab=0.8,
         cex.axis=0.8,
         cex.names=0.6,
-        col= rainbow(length(nomes.linha)),
+        col= rainbow(length(nomes.coluna)),
         legend.text=T,
         ylim=c(0,150),
 	  las= 2      
 	  )
 
 #################
-#PRECISO ARRUMAR#
+#PRECISO ARRUMAR#   OU RETIRAR
 #################
+
+#######################
+#NECESSÁRIO PARA RENDA#
+#######################
+is.numeric(renda)
+renda= as.numeric(renda)
+is.numeric(renda)
+
+renda
+
+summary(renda)
+
+boxplot(renda, ylab="Renda dos Alunos da Turma TN (em salários mínimos)", col="chocolate")
+
+boxplot(renda~curso, xlab= "", ylab="Renda por curso (em salários mínimos)", 
+	  col= rainbow(length(curso)), names= legCurso, cex.axis=0.6, cex.lab=1.2, las=2 )
+grid(nx= NULL, ny= NULL)
+
+
+
+
+
 
 
 
