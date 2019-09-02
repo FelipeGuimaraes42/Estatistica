@@ -21,7 +21,7 @@ t2<- round(prop.table(t1)*100, 2)
 t2
 
 legSex= c("Masculino", "Feminino");
-cores= rainbow(length(leg));
+cores= rainbow(length(legSex));
 pie(t1, labels= t2, col= cores);
 legend("topright", legSex, cex= 0.8, fill= cores);
 
@@ -43,7 +43,7 @@ legCurso= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "E
 	 "Eng. Sistemas", "Eng. Mecânica", "Eng. Metalúrgica", "Geologia", "Lic. Matemática", 
 	 "Matemática", "Química", "Sist. Informação") 
 legCurso
-cores= rainbow(length(leg))
+cores= rainbow(length(legCurso))
 barraCurso<- barplot(t3, names.arg= legCurso, ylab= "Número de Alunos", las=2,
 		 ylim=c(0,30), xlim=c(0, 15), cex.names=0.6, col= cores, xaxs= "i")
 grid(nx= NA, ny= NULL)
@@ -62,6 +62,14 @@ text(h$mids, h$counts, labels=h$counts, adj=c(0.5, -0.5));
 
 is.numeric(idade)
 summary(idade)
+
+#Boxplot relacionando idade e sexo
+boxplot(idade~sexo, ylab= "Idade (anos)", main= " ", col = "lightblue")
+legend("topleft", legend=c("0 = Feminino", "1 = Masculino"))
+
+#Boxplot relacionando horas de estudo e sexo
+boxplot(h_estudo~sexo, ylab= "Horas de estudo", main= " ", col = "green")
+legend("topleft", legend=c("0 = Feminino", "1 = Masculino"))
 
 #####################################
 #RELACIONANDO VARIÁVEIS QUALITATIVAS#
@@ -114,6 +122,34 @@ barplot(t(tCursoReli),
 	  las= 2
 	  )
 
+t8<- table(local, sexo)
+t8
+
+tLocal<- round(prop.table(t8)*100,2)
+tLocal
+
+#
+#Coloca nome nas linhas e colunas
+#
+nomes.linha<- c("Capital", "Interior do estado", "Outro Estado", "Outro País")
+nomes.coluna<- c("Feminino", "Masculino")
+dimnames(tLocal)<- list(nomes.linha, nomes.coluna)
+tLocal
+
+
+#Gráfico de barras
+barplot(t(tLocal),
+        ylab="Frequência Relativa de Sexo (%)",
+	  xlab= "Local de Nascimento",
+        names.arg=nomes.linha, 
+        cex.lab=0.8,
+        cex.axis=0.8,
+        cex.names=0.6,
+        col= c("darkblue", "red"),
+        legend.text=T,
+        ylim=c(0,100),
+	  las= 1
+	  )
 
 
 #################
