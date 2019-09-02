@@ -20,10 +20,14 @@ t1
 t2<- round(prop.table(t1)*100, 2)
 t2
 
+
+png("qtde-alunos-sexo.png")
 legSex= c("Masculino", "Feminino");
 cores= rainbow(length(legSex));
 pie(t1, labels= t2, col= cores);
 legend("topright", legSex, cex= 0.8, fill= cores);
+dev.off()
+
 
 t3<-table(curso)
 t3
@@ -44,32 +48,48 @@ legCurso= c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "E
 	 "Matemática", "Química", "Sist. Informação") 
 legCurso
 cores= rainbow(length(legCurso))
+
+
+png("qtde-alunos-curso.png")
 barraCurso<- barplot(t3, names.arg= legCurso, ylab= "Número de Alunos", las=2,
 		 ylim=c(0,30), xlim=c(0, 15), cex.names=0.6, col= cores, xaxs= "i")
 grid(nx= NA, ny= NULL)
+
+
 barraCurso<- barplot(t3, names.arg= legCurso, ylab= "Número de Alunos", las=2,
 		 ylim=c(0,30), xlim=c(0, 15), cex.names=0.6, col= cores, xaxs= "i", add=TRUE)
 #legend("topleft", leg, cex=0.8, fill= cores)
-
+dev.off()
 
 t5<- table(idade)
 t5
 t6<- round(prop.table(t5)*100, 2)
 t6
+
+png("faixaEtariaXqtdeAlunos.png")
 h<- hist(idade, freq=T, xlab= "Faixa Etária", ylab= "Número de Alunos",
      ylim= c(0, 30), col=cores, main=" ");
-text(h$mids, h$counts, labels=h$counts, adj=c(0.5, -0.5));
+grid(nx=NA, ny=NULL)
+text(h$mids, h$counts, labels=round(h$counts/53*100,2), adj=c(0.5, -0.5));
+dev.off()
 
 is.numeric(idade)
 summary(idade)
 
+
 #Boxplot relacionando idade e sexo
+png("idadeXsexo.png")
 boxplot(idade~sexo, ylab= "Idade (anos)", main= " ", col = "lightblue")
 legend("topleft", legend=c("0 = Feminino", "1 = Masculino"))
+dev.off()
+
 
 #Boxplot relacionando horas de estudo e sexo
+png("horasXsexo.png")
 boxplot(h_estudo~sexo, ylab= "Horas de estudo", main= " ", col = "green")
 legend("topleft", legend=c("0 = Feminino", "1 = Masculino"))
+dev.off()
+
 
 #####################################
 #RELACIONANDO VARIÁVEIS QUALITATIVAS#
@@ -110,6 +130,7 @@ dimnames(tCursoReli)<- list(nomes.linha, nomes.coluna)
 tCursoReli
 
 #Cria um gráfico de barras relacionando a religião com cada curso
+png("religiaoXcurso.png")
 barplot(t(tCursoReli),
         ylab="Frequência Relativa de Religião(%)",
         names.arg=nomes.linha, 
@@ -121,6 +142,7 @@ barplot(t(tCursoReli),
         ylim=c(0,150),
 	  las= 2
 	  )
+dev.off()
 
 t8<- table(local, sexo)
 t8
@@ -201,11 +223,15 @@ renda
 
 summary(renda)
 
+png("boxRendaXTodaTurma.png")
 boxplot(renda, ylab="Renda dos Alunos da Turma TN (em salários mínimos)", col="chocolate")
+dev.off()
 
+png("boxRendaxCurso.png")
 boxplot(renda~curso, xlab= "", ylab="Renda por curso (em salários mínimos)", 
 	  col= rainbow(length(curso)), names= legCurso, cex.axis=0.6, cex.lab=1.2, las=2 )
 grid(nx= NULL, ny= NULL)
+dev.off()
 
 
 
