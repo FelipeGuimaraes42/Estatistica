@@ -21,21 +21,21 @@ trabalha_labels  <- c("Nao", "Emp. publica", "Emp. privada", "Emp. familiar",
 
 sexo_labels      <- c("Feminino", "Masculino")
 
-#Frequencia absoluta e relativa
-cur_con_freq_a <- table(contribui, curso)
-cur_con_freq_r <- round(prop.table(cur_con_freq_a, margin = 2) * 100, 2)
+#Frequencias absoluta e relativa
+con_cur_freq_a <- table(contribui, curso)
+con_cur_freq_r <- round(prop.table(con_cur_freq_a, margin = 2) * 100, 2)
 
-cur_exp_freq_a <- table(expect, curso)
-cur_exp_freq_r <- round(prop.table(cur_exp_freq_a, margin = 2) * 100, 2)
+exp_cur_freq_a <- table(expect, curso)
+exp_cur_freq_r <- round(prop.table(exp_cur_freq_a, margin = 2) * 100, 2)
 
-cur_sex_freq_a <- table(sexo, curso)
-cur_sex_freq_r <- round(prop.table(cur_sex_freq_a, margin = 2) * 100, 2)
+sex_curfreq_a  <- table(sexo, curso)
+sex_curfreq_r  <- round(prop.table(sex_curfreq_a, margin = 2) * 100, 2)
 
 #Criando os graficos
 png(file = "barplot_contribui_curso.png")
 
 barplot (
-    cur_con_freq_r,
+    con_cur_freq_r,
     ylab      = "Frequencia relativa de contribuição (%)", 
     main      = "Grafico de barras - contribui por curso",
     names.arg = curso_labels,
@@ -52,7 +52,7 @@ legend("topright", contribui_labels, fill = rainbow(length(contribui_labels)), c
 png(file = "barplot_expec_curso.png")
 
 barplot (
-    cur_exp_freq_r,
+    exp_cur_freq_r,
     ylab      = "Frequencia relativa de espectativa (%)", 
     main      = "Grafico de barras - expectativa por curso",
     names.arg = curso_labels,
@@ -62,13 +62,14 @@ barplot (
     cex.names = 0.6,
 )
 
-legend("topright", expec_labels, fill = c("grey", "red", "orange", "yellow", "yellowgreen", "green"))
+legend("topright", expec_labels, fill = c("grey", "red", "orange", "yellow",
+       "yellowgreen", "green"))
 
 #-------------------------------------------------------------------------------
 
-png(file = "boxplot_idade_trabalho.png")
+png(file = "boxplot_idade_trabalha.png")
 
-boxplot(
+boxplot (
     idade ~ trabalha,
     ylab     = "Idade (anos)",
     main     = "Boxplot - trabalho por idade",
@@ -79,10 +80,10 @@ boxplot(
 
 #-------------------------------------------------------------------------------
 
-png(file = "barplot_sex_curso.png")
+png(file = "barplot_sexo_curso.png")
 
 barplot (
-    cur_sex_freq_r,
+    sex_curfreq_r,
     ylab      = "Frequencia relativa de sexo (%)", 
     main      = "Grafico de barras - sexo por curso",
     names.arg = curso_labels,
@@ -93,3 +94,44 @@ barplot (
 )
 
 legend("topright", sexo_labels, fill = c("pink", "lightblue"))
+
+#-------------------------------------------------------------------------------
+
+png(file = "boxplot_h_estudo_curso.png")
+
+boxplot (
+    h_estudo ~ curso,
+    ylab     = "Estudo (horas)",
+    main     = "Boxplot - h_estudo por curso",
+    col      = rainbow(length(curso)),
+    names    = curso_labels,
+    cex.axis = 0.6,
+    las = 2
+)
+
+#-------------------------------------------------------------------------------
+
+renda = as.numeric(as.character(renda))
+
+png(file = "boxplot_renda_trabalha.png")
+
+boxplot (
+    renda ~ trabalha,
+    ylab     = "Renda (Salários minimos)",
+    main     = "Boxplot - renda por trabalha",
+    col      = rainbow(length(trabalha)),
+    names    = trabalha_labels,
+    cex.axis = 0.8
+)
+
+#-------------------------------------------------------------------------------
+
+png(file = "boxplot_enem_idade.png")
+
+boxplot (
+    enem ~ idade,
+    ylab     = "Idade (anos)",
+    main     = "Boxplot - enem por idade",
+    col      = rainbow(length(idade)),
+    cex.axis = 0.8
+)
