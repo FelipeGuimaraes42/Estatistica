@@ -4,7 +4,7 @@ dados<- read.csv("code.csv", sep=";", dec=",", header=T)
 
 #dados
 
-#head(dados)
+head(dados)
 
 #sexo
 
@@ -215,25 +215,44 @@ barplot(t(tCursoReli),
 #######################
 #NECESSÁRIO PARA RENDA#
 #######################
-is.numeric(renda)
-renda= as.numeric(renda)
-is.numeric(renda)
-
 renda
-
+is.numeric(renda)
+renda= as.numeric(as.character(renda))
+is.numeric(renda)
+renda
 summary(renda)
 
-png("boxRendaXTodaTurma.png")
+png("boxplot_Renda.png")
 boxplot(renda, ylab="Renda dos Alunos da Turma TN (em salários mínimos)", col="chocolate")
+grid(nx= NA, ny= NULL)
 dev.off()
 
-png("boxRendaxCurso.png")
+png("boxplot_renda_curso.png")
 boxplot(renda~curso, xlab= "", ylab="Renda por curso (em salários mínimos)", 
 	  col= rainbow(length(curso)), names= legCurso, cex.axis=0.6, cex.lab=1.2, las=2 )
 grid(nx= NULL, ny= NULL)
 dev.off()
 
 
+#######################
+#NECESSÁRIO PARA PESO #
+#######################
+peso
+is.numeric(peso)
+peso= as.numeric(as.character(peso))
+is.numeric(peso)
+peso
+
+png("boxplot_peso.png")
+boxplot(peso, ylab="Peso dos Alunos da Turma TN (em kg)", col="chocolate")
+grid(nx= NA, ny= NULL)
+dev.off()
+
+png("boxplot_peso_curso.png")
+boxplot(peso~curso, xlab= "", ylab="Peso por curso (em kg)", 
+	  col= rainbow(length(curso)), names= legCurso, cex.axis=0.6, cex.lab=1.2, las=2 )
+grid(nx= NULL, ny= NULL)
+dev.off()
 
 
 
