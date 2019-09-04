@@ -162,15 +162,15 @@ tLocal
 #Gráfico de barras
 barplot(t(tLocal),
         ylab="Frequência Relativa de Sexo (%)",
-	  xlab= "Local de Nascimento",
+	xlab= "Local de Nascimento",
         names.arg=nomes.linha, 
         cex.lab=0.8,
         cex.axis=0.8,
         cex.names=0.6,
-        col= c("darkblue", "red"),
+        col= c("white", "black"),
         legend.text=T,
         ylim=c(0,100),
-	  las= 1
+	las= 1
 	  )
 
 
