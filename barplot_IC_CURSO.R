@@ -16,11 +16,6 @@ legendaCurso = c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas
 
 cor = rainbow(length(legendaCurso))
 
-##
-##NOMES SÃO PLOTADOS MUITO PEQUENOS
-##FALTA LEGENDA PARA AS CORES
-##
-
 barCursoIc <- barplot(
 	t1,
 	names.arg = legendaCurso,
