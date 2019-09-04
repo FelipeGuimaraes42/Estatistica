@@ -31,30 +31,13 @@ exp_cur_freq_r <- round(prop.table(exp_cur_freq_a, margin = 2) * 100, 2)
 sex_curfreq_a  <- table(sexo, curso)
 sex_curfreq_r  <- round(prop.table(sex_curfreq_a, margin = 2) * 100, 2)
 
-#Criando os graficos
-png(file = "barplot_contribui_curso.png")
-
-barplot (
-    con_cur_freq_r,
-    ylab      = "Frequencia relativa de contribuição (%)", 
-    main      = "Grafico de barras - contribui por curso",
-    names.arg = curso_labels,
-    col       = rainbow(length(contribui_labels)),
-    las       = 2,
-    ylim      = c(0,150),
-    cex.names = 0.6
-)
-
-legend("topright", contribui_labels, fill = rainbow(length(contribui_labels)), cex = 0.6)
-
-#-------------------------------------------------------------------------------
+#Criando so gráficos
 
 png(file = "barplot_expec_curso.png")
 
 barplot (
     exp_cur_freq_r,
     ylab      = "Frequencia relativa de espectativa (%)", 
-    main      = "Grafico de barras - expectativa por curso",
     names.arg = curso_labels,
     col       = c("grey", "red", "orange", "yellow", "yellowgreen", "green"),
     las       = 2,
@@ -72,7 +55,6 @@ png(file = "boxplot_idade_trabalha.png")
 boxplot (
     idade ~ trabalha,
     ylab     = "Idade (anos)",
-    main     = "Boxplot - trabalho por idade",
     col      = rainbow(length(trabalha)),
     names    = trabalha_labels,
     cex.axis = 0.8
@@ -85,7 +67,6 @@ png(file = "barplot_sexo_curso.png")
 barplot (
     sex_curfreq_r,
     ylab      = "Frequencia relativa de sexo (%)", 
-    main      = "Grafico de barras - sexo por curso",
     names.arg = curso_labels,
     col       = c("pink", "lightblue"),
     las       = 2,
@@ -102,7 +83,6 @@ png(file = "boxplot_h_estudo_curso.png")
 boxplot (
     h_estudo ~ curso,
     ylab     = "Estudo (horas)",
-    main     = "Boxplot - h_estudo por curso",
     col      = rainbow(length(curso)),
     names    = curso_labels,
     cex.axis = 0.6,
@@ -118,7 +98,6 @@ png(file = "boxplot_renda_trabalha.png")
 boxplot (
     renda ~ trabalha,
     ylab     = "Renda (Salários minimos)",
-    main     = "Boxplot - renda por trabalha",
     col      = rainbow(length(trabalha)),
     names    = trabalha_labels,
     cex.axis = 0.8
@@ -130,8 +109,7 @@ png(file = "boxplot_enem_idade.png")
 
 boxplot (
     enem ~ idade,
-    ylab     = "Idade (anos)",
-    main     = "Boxplot - enem por idade",
+    ylab     = "Enems feitos (unidades)",
     col      = rainbow(length(idade)),
     cex.axis = 0.8
 )
