@@ -1,0 +1,14 @@
+#Criando Boxplot que relaciona Nº de vezes que fez Enem com Cursinho
+
+dados<- read.csv("code.csv", sep=";", dec=",", header=T)
+attach(dados)
+
+png("boxplot-altura-sexo.png")
+boxplot(enem~cursinho,
+		main="",
+ 		ylab="Tentativas no Enem",
+		names=c("Não fez","Fez"),
+		col=c("green","yellow")
+		)
+grid(nx=NA, ny=NULL)
+dev.off()
