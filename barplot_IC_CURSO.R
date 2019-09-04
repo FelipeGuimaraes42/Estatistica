@@ -10,20 +10,21 @@ attach(dados)
 t1 <- table(ic,curso)
 t1 <- round(prop.table(t1,margin=2)*100,2)
 
-legendaCurso = c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. Produção",
-	 "Eng. Sistemas", "Eng. Mecânica", "Eng. Metalúrgica", "Geologia", "Lic. Matemática", 
-	 "Matemática", "Química", "Sist. Informação")
+legendaCurso = c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas", "Eng. ProduÃ§Ã£o",
+	 "Eng. Sistemas", "Eng. MecÃ¢nica", "Eng. MetalÃºrgica", "Geologia", "Lic. MatemÃ¡tica", 
+	 "MatemÃ¡tica", "QuÃ­mica", "Sist. InformaÃ§Ã£o")
 
 cor = rainbow(length(legendaCurso))
 
 ##
-##NOMES SÃO PLOTADOS MUITO PEQUENOS
+##FALTA LEGENDA
+##NOMES SÃƒO PLOTADOS MUITO PEQUENOS
 ##
 
 barCursoIc <- barplot(
 	t1,
 	names.arg = legendaCurso,
- 	ylab = "Iniciacao Cientifica (%)", 
+ 	ylab = "Freq. Relativa de iniciaÃ§Ã£o cientifica (%)", 
 	xlab = "Cursos", 
 	ylim = c(0,101), 
 	xlim = c(0,15), 
