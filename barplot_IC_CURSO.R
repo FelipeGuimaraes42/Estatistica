@@ -3,7 +3,7 @@ dados <- read.csv(
 	sep = ";",
 	dec = ",",
 	header=T
-	)
+)
 
 attach(dados)
 
@@ -17,18 +17,32 @@ legendaCurso = c("Eng. Espacial", "Eng. Ambiental", "Eng. Controle", "Eng. Minas
 cor = rainbow(length(legendaCurso))
 
 ##
-##FALTA LEGENDA
 ##NOMES SÃO PLOTADOS MUITO PEQUENOS
+##FALTA LEGENDA PARA AS CORES
 ##
 
 barCursoIc <- barplot(
 	t1,
 	names.arg = legendaCurso,
- 	ylab = "Freq. Relativa de iniciação cientifica (%)", 
-	xlab = "Cursos", 
+ 	ylab = "Iniciacao Cientifica (%)", 
+	xlab = "", 
 	ylim = c(0,101), 
-	xlim = c(0,15), 
-	cex.names=0.25, 
+	xlim = c(0,23), 
+	cex.names=0.6, 
 	col = cor, 
-	xaxs="i"
-	)
+	xaxs="i",
+	las=2,
+)
+
+#title(
+#	xlab = "",
+#	line = 0,
+#	cex.lab = 0.6
+#)
+
+legend(
+	"topright",
+	legend = c("Não faz IC","IC com Bolsa","IC sem Bolsa","IC Voluntária"),
+	fill = cor,
+	bty = "n"
+) 
