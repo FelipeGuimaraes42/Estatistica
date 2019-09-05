@@ -255,6 +255,25 @@ grid(nx= NULL, ny= NULL)
 dev.off()
 
 
+#########################
+#NECESSÁRIO PARA ALTURA #
+#########################
+altura
+is.numeric(altura)
+altura= as.numeric(as.character(altura))
+is.numeric(altura)
+altura
+
+png("boxplot_altura_sexo.png")
+	boxplot(altura~sexo, xlab= "", ylab="Altura (em metros)", main="",
+	  	  col= c("Lightblue", "Pink"), names= c("Feminino", "Masculino"))
+	grid(nx= NA, ny= NULL)
+dev.off()
+
+
+
+
+
 
 
 
