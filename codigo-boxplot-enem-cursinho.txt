@@ -7,7 +7,7 @@ png("boxplot-altura-sexo.png")
 boxplot(enem~cursinho,
 		main="",
  		ylab="Tentativas no Enem",
-		names=c("Não fez","Fez"),
+		names=c("Nao fez","Fez"),
 		col=c("green","yellow")
 		)
 grid(nx=NA, ny=NULL)
